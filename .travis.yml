@@ -1,0 +1,349 @@
+# yamllint disable rule:truthy
+---
+language: c
+dist: xenial
+
+addons:
+  apt:
+    sources: &source_apt
+      - ubuntu-toolchain-r-test
+    packages: &pkg_apt
+      - gettext
+      - autopoint
+      - libreadline-dev
+      - libncursesw5-dev
+      - texinfo
+      - autotools-dev
+      - autoconf-archive
+      - curl
+  homebrew:
+    packages: &pkg_brew
+      - autoconf
+      - autoconf-archive
+      - automake
+      - readline
+      - libtool
+      - gettext
+      - texinfo
+      - curl
+
+jobs:
+  include:
+    - stage: "Compiler version/OS checks"
+      name: "linux/gcc-5"
+      os: linux
+      compiler: "gcc-5"
+      addons:
+        apt:
+          sources:
+            - *source_apt
+          packages:
+            - *pkg_apt
+            - "gcc-5"
+
+    - stage: "Compiler version/OS checks"
+      name: "linux/gcc-6"
+      os: linux
+      compiler: "gcc-6"
+      addons:
+        apt:
+          sources:
+            - *source_apt
+          packages:
+            - *pkg_apt
+            - "gcc-6"
+
+    - stage: "Compiler version/OS checks"
+      name: "linux/gcc-7"
+      os: linux
+      compiler: "gcc-7"
+      addons:
+        apt:
+          sources:
+            - *source_apt
+          packages:
+            - *pkg_apt
+            - "gcc-7"
+
+    - stage: "Compiler version/OS checks"
+      name: "linux/gcc-8"
+      os: linux
+      compiler: "gcc-8"
+      addons:
+        apt:
+          sources:
+            - *source_apt
+          packages:
+            - *pkg_apt
+            - "gcc-8"
+
+    - stage: "Compiler version/OS checks"
+      name: "linux/gcc-9"
+      os: linux
+      compiler: "gcc-9"
+      addons:
+        apt:
+          sources:
+            - *source_apt
+          packages:
+            - *pkg_apt
+            - "gcc-9"
+
+    - stage: "Compiler version/OS checks"
+      name: "linux/gcc-10"
+      os: linux
+      compiler: "gcc-10"
+      addons:
+        apt:
+          sources:
+            - *source_apt
+          packages:
+            - *pkg_apt
+            - "gcc-10"
+
+    - stage: "Compiler version/OS checks"
+      name: "linux/clang-5"
+      os: linux
+      compiler: "clang-5.0"
+      addons:
+        apt:
+          sources: [ *source_apt ]
+          packages:
+            - *pkg_apt
+            - "clang-5.0"
+
+    - stage: "Compiler version/OS checks"
+      name: "linux/clang-6"
+      os: linux
+      compiler: "clang-6.0"
+      addons:
+        apt:
+          sources:
+            - *source_apt
+            - "llvm-toolchain-xenial-6.0"
+          packages:
+            - *pkg_apt
+            - "clang-6.0"
+
+    - stage: "Compiler version/OS checks"
+      name: "linux/clang-7"
+      os: linux
+      compiler: "clang-7"
+      addons:
+        apt:
+          sources:
+            - *source_apt
+            - "llvm-toolchain-xenial-7"
+          packages:
+            - *pkg_apt
+            - "clang-7"
+
+    - stage: "Compiler version/OS checks"
+      name: "linux/clang-8"
+      os: linux
+      compiler: "clang-8"
+      addons:
+        apt:
+          sources:
+            - *source_apt
+            - "llvm-toolchain-xenial-8"
+          packages:
+            - *pkg_apt
+            - "clang-8"
+
+    - stage: "Compiler version/OS checks"
+      name: "linux/clang-9"
+      os: linux
+      compiler: "clang-9"
+      addons:
+        apt:
+          sources:
+            - *source_apt
+            - "llvm-toolchain-xenial-9"
+          packages:
+            - *pkg_apt
+            - "clang-9"
+
+    - stage: "Compiler version/OS checks"
+      name: "linux/clang-10"
+      os: linux
+      compiler: "clang-10"
+      addons:
+        apt:
+          sources:
+            - *source_apt
+            - "llvm-toolchain-xenial-10"
+          packages:
+            - *pkg_apt
+            - "clang-10"
+
+    - stage: "Compiler version/OS checks"
+      name: "osx/xcode-9.4"
+      os: osx
+      osx_image: "xcode9.4"
+      compiler: clang
+      env: [ CONFIGOPTIONS="--with-readline=/usr/local/opt/readline/" ]
+      addons:
+        homebrew:
+          packages:
+            - *pkg_brew
+
+    - stage: "Compiler version/OS checks"
+      name: "osx/xcode-10.1"
+      os: osx
+      osx_image: "xcode10.1"
+      compiler: clang
+      env: [ CONFIGOPTIONS="--with-readline=/usr/local/opt/readline/" ]
+      addons:
+        homebrew:
+          packages:
+            - *gettext
+
+    - stage: "Compiler version/OS checks"
+      name: "osx/xcode-11"
+      os: osx
+      osx_image: "xcode11"
+      compiler: clang
+      env: [ CONFIGOPTIONS="--with-readline=/usr/local/opt/readline/" ]
+      addons:
+        homebrew:
+          packages:
+            - *gettext
+
+    - stage: "Compiler version/OS checks"
+      name: "osx/xcode-12"
+      os: osx
+      osx_image: "xcode12"
+      compiler: clang
+      env: [ CONFIGOPTIONS="--with-readline=/usr/local/opt/readline/" ]
+      addons:
+        homebrew:
+          packages:
+            - *gettext
+
+    - stage: "Compiler version/OS checks"
+      name: "osx/hb/gcc-8"
+      os: osx
+      osx_image: "xcode11"
+      compiler: "gcc-8"
+      env: [ CONFIGOPTIONS="--with-readline=/usr/local/opt/readline/" ]
+      addons:
+        homebrew:
+          packages:
+            - *pkg_apt
+            - "gcc@8"
+
+    - stage: "Compiler version/OS checks"
+      name: "osx/hb/gcc-10"
+      os: osx
+      osx_image: "xcode11"
+      compiler: "gcc-10"
+      env: [ CONFIGOPTIONS="--with-readline=/usr/local/opt/readline/" ]
+      addons:
+        homebrew:
+          packages:
+            - *pkg_apt
+            - "gcc@10"
+
+    - stage: "Crosscompiler checks"
+      name: "x86_32"
+      os: linux
+      compiler: "gcc-8"
+      env: { CFLAGS: "-m32" }
+      addons:
+        apt:
+          sources:
+            - *source_apt
+          packages:
+            - *pkg_apt
+            - "gcc-8"
+            - "gcc-8-multilib"
+            - "lib32gcc-8-dev"
+            - "lib32ncurses5-dev"
+            - "lib32readline-dev"
+
+    - stage: "Optimization checks"
+      name: "gcc-8 -Os"
+      os: linux
+      compiler: "gcc-8"
+      env: { CFLAGS: "-Os" }
+      addons:
+        apt:
+          sources:
+            - *source_apt
+          packages:
+            - *pkg_apt
+            - "gcc-8"
+
+    - stage: "Optimization checks"
+      name: "gcc-8 -O3"
+      os: linux
+      compiler: "gcc-8"
+      env: { CFLAGS: "-O3" }
+      addons:
+        apt:
+          sources:
+            - *source_apt
+          packages:
+            - *pkg_apt
+            - "gcc-8"
+
+    - stage: "distcheck"
+      addons:
+        apt:
+          sources:
+            - *source_apt
+          packages:
+            - *pkg_apt
+            - texlive
+      script:
+        - ./autogen.sh
+        - ./configure
+        - make distcheck
+      before_deploy:
+        - |
+          export PINFO_VERSION=$(awk '/^#define +PACKAGE_VERSION/ { print $3 }' < config.h | tr -d '"');
+          if [ "$PINFO_VERSION" != "$TRAVIS_TAG" ]; then
+            echo "tag '$TRAVIS_TAG' is not in sync with PACKAGE_VERSION '$PINFO_VERSION'";
+            echo "Aborting release";
+            false;
+          fi
+        - echo "Deploying pinfo version $PINFO_VERSION to Github Release"
+      deploy:
+        provider: releases
+        api_key: "$GITHUB_TOKEN"
+        file: "pinfo-${PINFO_VERSION}.tar.gz"
+        skip_cleanup: true
+        on: { tags: true }
+        draft: true
+
+  allow_failures:
+    - os: linux
+      compiler: gcc-9
+    - os: osx
+      compiler: gcc-8
+    - os: linux
+      compiler: "gcc-8"
+      env: { CFLAGS: "-m32" }
+
+before_install:
+  - "$CC --version"
+
+before_script:
+  - export PATH="/usr/local/opt/gettext/bin:$PATH"
+
+script:
+  - ./autogen.sh
+  - "./configure $CONFIGOPTIONS"
+  - make
+
+after_failure:
+  - apt install curl
+  - >
+    test -e config.log &&
+    curl -s 'https://hastebin.com/documents' --data-binary @config.log |
+    grep '"key"'|sed 's#^.*"key"\s*:\s*"\(.*\)".*$#https://hastebin.com/\1#'
+  - >
+    test -e aclocal.m4 &&
+    curl -s 'https://hastebin.com/documents' --data-binary @aclocal.m4 |
+    grep '"key"'|sed 's#^.*"key"\s*:\s*"\(.*\)".*$#https://hastebin.com/\1#'
